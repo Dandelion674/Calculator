@@ -34,3 +34,29 @@ function operate (operator,firstNumber,secondNumber){
         default: return "invalid operator";
     }
 }
+
+const display = document.querySelector("#display");
+const buttons = document.querySelectorAll(".btn");
+
+let currentValue = "";
+
+buttons.forEach(button =>{
+    button.addEventListener("click", () => {
+        const value = button.dataset.value;
+
+        if(!isNaN(value) || value === "."){
+            currentValue +=value;
+            display.textContent = currentValue;
+        }
+        
+        if (button.textContent === "AC"){
+            currentValue="";
+            display.textContent = "0";
+        }
+
+        if (button.textContent === "C"){
+            currentValue = currentValue.slice(0,-1)
+            display.textContent = currentValue === ""? "0":currentValue;
+        }
+    })
+})
