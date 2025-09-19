@@ -58,5 +58,16 @@ buttons.forEach(button =>{
             currentValue = currentValue.slice(0,-1)
             display.textContent = currentValue === ""? "0":currentValue;
         }
+
+        if (["+", "-", "*", "/", "%"].includes(value)){ 
+            firstNumber = parseFloat(currentValue); 
+            operator = value; currentValue = ""; 
+        } 
+        
+        if (value === "="){
+            secondNumber = parseFloat(currentValue)
+            const result = operate (operator,firstNumber,secondNumber);
+            display.textContent = result; currentValue = result.toString();
+        }
     })
 })
